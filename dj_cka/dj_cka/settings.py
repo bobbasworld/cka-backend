@@ -157,8 +157,20 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 
 # django-cors-headers configuration
-# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = [
-    'http://locahost:8000',
+    'http://121.0.0.1:8000',
     'http://localhost:3000',
 ]
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PARSER_CLASSES': [
+#         'rest_framework.parsers.JSONParser',
+#     ]
+# }
+
+
+# instruct rest-auth to use our own custom User serializer
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'accounts.serializers.MyUserSerializer',
+}
