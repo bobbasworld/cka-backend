@@ -32,21 +32,22 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # My apps
-    'accounts',
+    'useraccounts',
     'lessons',
+
 
     # django rest framework
     'rest_framework',
 
     # django-rest-auth
     'rest_framework.authtoken',
-    'rest_auth',
+    'dj_rest_auth',
 
     # django-allauth
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'rest_auth.registration',
+    'dj_rest_auth.registration',
     'allauth.socialaccount',
 
     # django-cors-headers
@@ -147,30 +148,40 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Custom User Model configuration
-AUTH_USER_MODEL = 'accounts.MyUser'
+AUTH_USER_MODEL = 'useraccounts.MyUser'
 
 # django-allauth configuration
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 # arguments ('email', 'username', 'username_email')
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 
 
 # django-cors-headers configuration
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = [
-    'http://121.0.0.1:8000',
-    'http://localhost:3000',
-]
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = [
+#     'http://121.0.0.1:8000',
+#     'http://localhost:3000',
+# ]
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PARSER_CLASSES': [
-#         'rest_framework.parsers.JSONParser',
-#     ]
-# }
+
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
 
 
 # instruct rest-auth to use our own custom User serializer
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'accounts.serializers.MyUserSerializer',
+    'USER_DETAILS_SERIALIZER': 'useraccounts.serializers.MyUserSerializer',
 }
