@@ -22,8 +22,8 @@ admin.site.site_title = 'CKA Admin'
 admin.site.index_title = 'CKA Administration'
 
 urlpatterns = [
-    path('rest-auth/', include('rest_auth.urls')),
-    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('auth/', include('dj_rest_auth.urls')),
+    path('auth/registration/', include('dj_rest_auth.registration.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('lessons.api.urls')),
 ]
