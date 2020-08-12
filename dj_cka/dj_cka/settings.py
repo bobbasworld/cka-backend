@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # My apps
     'accounts',
     'lessons',
+    'bites',
 
     # django rest framework
     'rest_framework',
