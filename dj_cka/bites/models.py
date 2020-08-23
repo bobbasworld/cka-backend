@@ -1,4 +1,7 @@
 from django.db import models
+from django.conf import settings
+
+from accounts.models import MyUser
 
 # Create your models here.
 
@@ -8,6 +11,11 @@ class Bite(models.Model):
     content = models.TextField()
     # published_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(verbose_name='published date')
+
+    author_name = models.CharField(max_length=200, null=True)
+    author_description = models.TextField(max_length=200, null=True)
+    author_twitter_image = models.URLField(null=True)
+    author_twitter_url = models.URLField(null=True)
 
     FUNDAMENTAL = 'fundamental'
     TECHNICAL = 'technical'

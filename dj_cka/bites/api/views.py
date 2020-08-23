@@ -9,7 +9,12 @@ class BiteListView(ListAPIView):
     queryset = Bite.objects.all()
     serializer_class = BiteSerializer
     filter_backends = (SearchFilter, OrderingFilter)
-    search_fields = ('title', 'content', 'published_date', 'bite_type')
+    search_fields = (
+        'title', 'content',
+        'published_date', 'bite_type',
+        'author_name', 'author_twitter_image',
+        'author_twitter_url',
+    )
 
 
 class BiteDetailView(RetrieveAPIView):

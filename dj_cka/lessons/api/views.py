@@ -9,7 +9,7 @@ class LessonListView(ListAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     filter_backends = (SearchFilter, OrderingFilter)
-    search_fields = ('title', 'content', 'level')
+    search_fields = ('id', 'title', 'content', 'level',)
 
 
 class LessonDetailView(RetrieveAPIView):
